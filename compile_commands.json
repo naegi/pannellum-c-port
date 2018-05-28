@@ -1,0 +1,182 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/gl_utils/gl_error.o",
+            "src/gl_utils/gl_error.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/gl_utils/gl_error.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/gl_utils/texture.o",
+            "src/gl_utils/texture.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/gl_utils/texture.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/utils/stb_image.o",
+            "src/utils/stb_image.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/utils/stb_image.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/main.o",
+            "src/main.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/main.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/renderer/multires.o",
+            "src/renderer/multires.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/renderer/multires.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/glad.o",
+            "src/glad.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/glad.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/cjson/cJSON.o",
+            "src/cjson/cJSON.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/cjson/cJSON.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/utils/format_string.o",
+            "src/utils/format_string.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/utils/format_string.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/utils/log.o",
+            "src/utils/log.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/utils/log.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-Wall",
+            "-g",
+            "-Iinclude",
+            "-std=c11",
+            "-DLOG_LEVEL=LOG_DEBUG",
+            "-O2",
+            "-I/usr/include/libdrm",
+            "-o",
+            "build/src/gl_utils/shader.o",
+            "src/gl_utils/shader.c"
+        ],
+        "directory": "/home/tristan/programmation/opv/pannellum-c",
+        "file": "src/gl_utils/shader.c"
+    }
+]
