@@ -3,7 +3,7 @@ src := main.c glad.c texture_loader.c\
     config.c\
     context/context.c\
     cjson/cJSON.c\
-    renderer/multires.c\
+    renderer/multires.c renderer/transition.c \
     utils/log.c utils/stb_image.c utils/format_string.c utils/json_parse.c utils/args.c\
     gl_utils/texture.c gl_utils/shader.c gl_utils/gl_error.c
 

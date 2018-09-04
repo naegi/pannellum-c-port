@@ -120,9 +120,8 @@ void multires_init(multires_data_t* d, unsigned char max_level,
         {GL_VERTEX_SHADER,   "ressources/shaders/multires.vert"}
     };
     d->shader = create_program_from_shader_files(shaders_data, 2);
-    multires_generate_gl_stuff(d);
-    glUseProgram(d->shader);
 
+    multires_generate_gl_stuff(d);
     multires_set_current_level(d, 1);
 }
 
@@ -134,7 +133,7 @@ void multires_delete(multires_data_t* d){
     free(d->texture_loader);
 
     glDeleteProgram(d->shader);
-    glDeleteVertexArrays(1, &(d->VAO));
+    glDeleteVertexArrays(1, d->VAOs);
     glDeleteBuffers(2, d->buffers);
 }
 
@@ -274,18 +273,20 @@ void multires_draw(multires_data_t *d){
     list_map(d->nodes, _multires_draw);
 }
 
+
 void multires_set_viewport(multires_data_t* d, int width, int height){
     d->screen_width = width;
     d->screen_height = height;
 }
 
-void multires_render(multires_data_t* d, float fov, float pitch, float yaw){
+int multires_render(multires_data_t* d, float fov, float pitch, float yaw){
     struct timespec t1;
     timespec_get(&t1, TIME_UTC);
 
+    glUseProgram(d->shader);
+
     mat4x4 persp;
     mat4x4_perspective(persp, fov, (float)d->screen_width/d->screen_height, 0.1, 100);
-    UNIFORM_SET(d->shader, "projection", Matrix4fv, 1, GL_FALSE, (float*)persp);
 
     mat4x4 transf;
     mat4x4_identity(transf);
@@ -293,23 +294,31 @@ void multires_render(multires_data_t* d, float fov, float pitch, float yaw){
     mat4x4_rotate_X(transf, transf, -pitch);
     mat4x4_rotate_Y(transf, transf, -yaw);
 
-    int level = get_current_level(d, persp, transf, 0);
+    UNIFORM_SET(d->shader, "transform", Matrix4fv, 1, GL_FALSE, (float*)transf);
+    UNIFORM_SET(d->shader, "projection", Matrix4fv, 1, GL_FALSE, (float*)persp);
+
+    int level = 0;
+    // Should not use loop, but angles ?
+    for (int i = 0; i < 6; ++i) {
+        level = max(level, get_current_level(d, persp, transf, i));
+    }
     if(d->current_level < level || abs(d->current_level - level) >= 2){
         multires_set_current_level(d, level);
     }
 
-    UNIFORM_SET(d->shader, "text", 1i, 0); // or with shader class
-    UNIFORM_SET(d->shader, "transform", Matrix4fv, 1, GL_FALSE, (float*)transf);
-
     multires_draw(d);
 
     texture_loader_process(d->texture_loader, t1);
+    return 0;
 }
 
 void multires_generate_gl_stuff(multires_data_t* d){
-    glGenVertexArrays(1, &(d->VAO));
+    glGenVertexArrays(1, d->VAOs);
     glGenBuffers(2, d->buffers);
 
+    /*
+     * MULTIRES
+     */
     glBindVertexArray(d->VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, d->texCoords);

@@ -6,8 +6,7 @@
 #include "context.h"
 
 #define CONFIG_MULTIRES        0
-#define CONFIG_CUBEMAP         1
-#define CONFIG_EQUIRECTANGULAR 2
+#define CONFIG_TRANSITION      1
 
 typedef struct {
     int type;

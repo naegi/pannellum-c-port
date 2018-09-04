@@ -16,6 +16,7 @@
 #define SCREEN_HEIGHT 640
 
 context_t* ctx;
+size_t trans_id;
 
 /**
  * A callback that resize the opengl viewport
@@ -59,7 +60,7 @@ GLFWwindow* initializeWindow(bool debug){
 #endif
 
     window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT,
-            "Pannellum in C, more complex, less util!", NULL, NULL);
+            "Pannellum in C, more complex, less usefull!", NULL, NULL);
     if (!window){
         glfwTerminate();
         error("Can't create GLFW window! Bye!\n");
@@ -121,7 +122,7 @@ float fov = M_PI / 2,
 void process_input(GLFWwindow* window){
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(window, true);
-        warn("You don't want me anymore?! That's so saaad :'-(\n");
+        warn("You don't want me anymore?! That's so saaad :'(\n");
     }
     if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
         pitch += 0.01;
@@ -136,7 +137,7 @@ void process_input(GLFWwindow* window){
     if(glfwGetKey(window, GLFW_KEY_KP_SUBTRACT) == GLFW_PRESS)
         fov -= 0.01;
     if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        context_switch(ctx, 1);
+        context_switch(ctx, trans_id);
     if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
         context_switch(ctx, 0);
 }
@@ -171,7 +172,9 @@ int main(int argc, char** argv) {
 
     size_t id_start = configure_context(ctx, config);
 
-    context_switch(ctx, id_start);
+    //context_switch(ctx, id_start);
+    trans_id = context_add_elem(ctx, CONFIG_TRANSITION, NULL);
+    context_switch(ctx, trans_id);
 
     loop(window);
 

@@ -1,9 +1,9 @@
 #ifndef CONTEXT_H
 #define CONTEXT_H
 
-#define CONTEXT_MULTIRES 0
-
 #define CONTEXT_ALLOCATE_STEP 0x3 // Allocate context_elem_t by lot of 0x3
+
+typedef int (*context_renderer_fct)(void*, float hfov, float pitch, float yaw);
 
 typedef struct{
     int type;
@@ -17,6 +17,7 @@ typedef struct{
     context_elem_t* array; // Store all contexes
 
     size_t current_context;
+    context_renderer_fct current_renderer;
 }context_t;
 
 void context_init(context_t* c, int width, int height);

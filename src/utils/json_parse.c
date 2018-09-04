@@ -62,10 +62,6 @@ config_elem_t* json_parse_elem_config(char* filename){
         case CONFIG_MULTIRES:
             a->config = json_parse_multires(json);
             break;
-        case CONFIG_EQUIRECTANGULAR:
-        case CONFIG_CUBEMAP:
-            error("raise NotImplementedError\n");
-            exit(-1);
         default:
             error("Renderer type in %s has not been recognized\n", filename);
             help("Pannellum");
@@ -123,7 +119,7 @@ config_t* json_parse_main_config(char* filename){
 
     array = cJSON_GetObjectItem(json, "path");
     if(!cJSON_IsArray(array)){
-        error("valids_ids should be an array\n");
+        error("path should be an array\n");
         exit(-1);
     }
 

@@ -1,0 +1,7 @@
+{
+    "base_path": "ressources/pano/transitions/%i",
+    "config_path": "/config.json",
+    "valid_ids": [10, 29, 12, 7, 8, 9],
+    "path": [],
+    "start": 12
+}

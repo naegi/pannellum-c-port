@@ -21,10 +21,6 @@ size_t configure_context(context_t* ctx, config_t* cfg){
                 ((config_multires_t*)cfg_elem->config)->base_path = strdup(config_path);
                 id = context_add_elem(ctx, CONFIG_MULTIRES, cfg_elem->config);
                 break;
-            case CONFIG_EQUIRECTANGULAR:
-            case CONFIG_CUBEMAP:
-                error("raise NotImplementedError\n");
-                exit(-1);
         }
         free(cfg_elem->config);
         free(cfg_elem);

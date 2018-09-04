@@ -25,10 +25,19 @@ typedef struct{
 
     texture_loader_t* texture_loader;
 
-    unsigned int shader, VAO;
+    unsigned int shader;
+
+    union {
+        unsigned int VAOs[1];
+        struct {
+            unsigned int VAO;
+        };
+    };
     union{
         unsigned int buffers[2];
-        struct{unsigned int texCoords, EBO;};
+        struct{
+            unsigned int texCoords, EBO;
+        };
     };
 
     list_t* nodes;
@@ -45,7 +54,7 @@ static inline void multires_init_from_cfg(multires_data_t* d, config_multires_t*
                      a->base_path, a->path_format, 0);
 }
 void multires_set_viewport(multires_data_t* d, int width, int height);
-void multires_render(multires_data_t* d, float fov, float pitch, float yaw);
+int multires_render(multires_data_t* d, float fov, float pitch, float yaw);
 void multires_delete(multires_data_t* d);
 
 // Private //TODO: hide

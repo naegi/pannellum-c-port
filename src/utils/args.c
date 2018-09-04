@@ -11,10 +11,6 @@
 int renderer_str_to_enum(char* renderer_str){
     if (strcmp(renderer_str, "multires") == 0)
         return CONFIG_MULTIRES;
-    else if (strcmp(renderer_str, "equirectangular") == 0)
-        return CONFIG_EQUIRECTANGULAR;
-    else if (strcmp(renderer_str, "cubemap") == 0)
-        return CONFIG_CUBEMAP;
     return -1;
 }
 
