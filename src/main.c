@@ -163,6 +163,10 @@ int main(int argc, char** argv) {
     info("Hi! Nice to meet you\n");
 
     config_t* config = json_parse_main_config(args.json);
+    if(config == NULL){
+        error("bye");
+        return -1;
+    }
 
     GLFWwindow* window = initializeWindow(args.debug);
 
@@ -179,6 +183,8 @@ int main(int argc, char** argv) {
     free(ctx);
 
     free(config->valid_ids);
+    free(config->config_path);
+    free(config->base_path);
     free(config);
 
     info("Bye!\n");

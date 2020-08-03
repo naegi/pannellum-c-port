@@ -51,7 +51,10 @@ config_elem_t* json_parse_elem_config(char* filename){
         if (error_ptr != NULL) {
             error("Error while reading JSON: %s\n", error_ptr);
         }
-        goto end;
+        cJSON_Delete(json);
+        free(buffer);
+        free(a);
+        return NULL;
     }
 
     char* renderer = NULL;
@@ -71,7 +74,6 @@ config_elem_t* json_parse_elem_config(char* filename){
             help("Pannellum");
             exit(-1);
     }
-end:
     cJSON_Delete(json);
     free(buffer);
 
@@ -94,7 +96,10 @@ config_t* json_parse_main_config(char* filename){
         if (error_ptr != NULL) {
             error("Error while reading JSON: %s\n", error_ptr);
         }
-        goto end;
+        cJSON_Delete(json);
+        free(buffer);
+        free(a);
+        return NULL;
     }
 
     copy_json_str(json, config_path, a->config_path);
@@ -105,7 +110,7 @@ config_t* json_parse_main_config(char* filename){
     cJSON* array = cJSON_GetObjectItem(json, "valid_ids");
     cJSON* id = NULL;
     if(!cJSON_IsArray(array)){
-        error("valids_ids should be an array\n");
+        error("valid_ids should be an array\n");
         exit(-1);
     }
 
@@ -123,14 +128,13 @@ config_t* json_parse_main_config(char* filename){
 
     array = cJSON_GetObjectItem(json, "path");
     if(!cJSON_IsArray(array)){
-        error("valids_ids should be an array\n");
+        error("path should be an array\n");
         exit(-1);
     }
 
     a->links_length = cJSON_GetArraySize(array);
     warn("Links are not implemented\n");
 
-end:
     cJSON_Delete(json);
     free(buffer);
 
